@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Color Picker</title>
+  <link rel="icon" href="icon.png" />
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      background-color: #2c2f33;
+    }
+
+    .color-picker {
+      text-align: center;
+    }
+
+    input[type="color"] {
+      width: 40vh;
+      height: 40vh;
+    }
+
+    p {
+      font-family: "Open Sans", sans-serif;
+      color: lightslategray;
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .random-color-button {
+      margin-top: 50px;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #ffffff;
+      background-color: #5865f2;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .random-color-button:hover {
+      background-color: #4855e2;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .color-picker {
+        flex-direction: column;
+      }
+
+      input[type="color"] {
+        width: 30vh;
+        height: 30vh;
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="color-picker">
+    <div>
+      <input type="color" id="color" value="#ffffff" />
+    </div>
+    <div>
+      <button class="random-color-button">Random Color</button>
+    </div>
+  </div>
+  <p>&copy; SuperOrca 2023</p>
+
+  <script>
+    const colorPicker = document.getElementById("color");
+    const randomColorButton = document.querySelector(".random-color-button");
+
+    randomColorButton.addEventListener("click", () => {
+      const randomColor = getRandomColor();
+      colorPicker.value = randomColor;
+    });
+
+    function getRandomColor() {
+      const letters = "0123456789ABCDEF";
+      let color = "#";
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+  </script>
+</body>
+</html>
